@@ -16,7 +16,14 @@
     "type": "git",
     "url": "git+https://github.com/andymcgunagle/get-array-of-links.git"
   },
-  "keywords": [],
+  "keywords": [
+    "anchor",
+    "array",
+    "href",
+    "links",
+    "scrape",
+    "webpage"
+  ],
   "author": "amcgunagle",
   "license": "ISC",
   "bugs": {
