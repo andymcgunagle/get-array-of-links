@@ -1,6 +1,7 @@
 # get-array-of-links
 
-[![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)](https://badge.fury.io/js/angular2-expandable-list)
+[![npm version](https://badge.fury.io/js/get-array-of-links.svg)](https://badge.fury.io/js/get-array-of-links)
+[![npm](https://img.shields.io/npm/dm/get-array-of-links.svg)](https://www.npmjs.com/package/get-array-of-links)
 
 > Get an array of link objects with the text and href from every anchor tag on a webpage.
 
