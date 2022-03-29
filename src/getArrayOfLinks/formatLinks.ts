@@ -21,10 +21,8 @@ export function formatLinks(links: LinkObject[], url: string): LinkObject[] {
     // Replace '&amp;' with '&'
     link.text = link.text.replace(/&amp;/g, '&');
 
-    // Replace unicode characters
-    link.text = link.text.replace(/&#x([0-9a-f]{2,5});/gi, function (match, grp) {
-      return String.fromCharCode(parseInt(grp, 16));
-    });
+    // Parse ascii characters
+    link.text = link.text.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec));
 
     // Replace excess whitespace with single space
     link.text = link.text.replace(/\s\s+/g, ' ');
