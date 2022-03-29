@@ -5,7 +5,7 @@ import { LinkObject, getLinkObjects } from '../parseHTML/getLinkObjects';
 
 export async function getLinks(
   url: string,
-  numLinks: number = 10
+  numLinks?: number,
 ) {
   try {
     let links: LinkObject[] = [];
@@ -19,7 +19,11 @@ export async function getLinks(
 
     links = formatLinks(links, url);
 
-    return links.slice(0, numLinks);;
+    if (numLinks) {
+      return links.slice(0, numLinks);
+    };
+
+    return links;
   } catch (error) {
     console.error(error);
   };
