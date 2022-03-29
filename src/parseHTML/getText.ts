@@ -1,7 +1,3 @@
-function cleanText(text: string) {
-  return text.trim().replace('&amp', '&');
-};
-
 export function getText(anchorTagContents: string): string {
   const text = anchorTagContents
     .slice(anchorTagContents.indexOf('"'))
@@ -10,5 +6,5 @@ export function getText(anchorTagContents: string): string {
     .filter(text => text && text)
     .map(text => text.split('<')[0])[0];
 
-  return text ? cleanText(text) : 'NO VALUE';
+  return text ? text.trim() : 'NO VALUE';
 };
