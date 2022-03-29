@@ -1,20 +1,32 @@
 {
   "name": "get-array-of-links",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Get an array of link objects with the text and href from every anchor tag on a webpage.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "save": "git add . && git commit && git push origin main"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andymcgunagle/get-array-of-links.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "amcgunagle",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andymcgunagle/get-array-of-links/issues"
   },
-  "homepage": "https://github.com/andymcgunagle/get-array-of-links#readme"
+  "homepage": "https://github.com/andymcgunagle/get-array-of-links#readme",
+  "dependencies": {
+    "axios": "^0.26.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
 }
