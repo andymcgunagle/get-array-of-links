@@ -13,7 +13,7 @@
     - [limit](#limit)
     - [useFilters](#usefilters)
     - [customFilters](#customfilters)
-    - [formatLinks](#formatlinks)
+    - [useFormatting](#useformatting)
     - [customFormatting](#customformatting)
 - [Author](#author)
 
@@ -56,7 +56,8 @@ const links = await getArrayOfLinks('https://www.example.com', {
   limit: 10,
   useFilters: false,
   customFilters: myCustomFiltersFunction,
-  formatLinks: false,
+  useFormatting: false,
+  customFormatting: myCustomFormattingFunction,
 });
 ```
 
@@ -95,7 +96,7 @@ export function filterLinks(links: LinkObject[]): LinkObject[] {
 
 A user-defined function that takes an array of link objects and returns an array of link objects filtered as desired.
 
-#### `formatLinks`
+#### `useFormatting`
 
 Defaults to true and uses the following formatLinks function to format links.
 
