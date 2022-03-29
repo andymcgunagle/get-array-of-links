@@ -1,5 +1,5 @@
-import { getLinks } from "./getLinks/getLinks";
+import { getArrayOfLinks } from "./getArrayOfLinks/getArrayOfLinks";
 
 export {
-  getLinks
+  getArrayOfLinks
 };

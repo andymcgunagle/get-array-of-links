@@ -9,7 +9,12 @@
 - [Installation](#installation)
 - [Usage](#usage)
   - [Getting All Links](#getting-all-links)
-  - [Limiting Results Returned](#limiting-results-returned)
+  - [Options](#options)
+    - [limit](#limit)
+    - [useFilters](#usefilters)
+    - [customFilters](#customfilters)
+    - [formatLinks](#formatlinks)
+    - [customFormatting](#customformatting)
 - [Author](#author)
 
 ## Installation
@@ -42,12 +47,88 @@ const links = await getArrayOfLinks('https://www.example.com');
 // }
 ```
 
-### Limiting Results Returned
+### Options
+
+getArrayOfLinks takes an optional options object as its second argument.
 
 ```js
-// getArrayOfLinks takes an optional second argument that can be used to limit the number of results returned.
-const links = await getArrayOfLinks('https://www.example.com', 10);
+const links = await getArrayOfLinks('https://www.example.com', {
+  limit: 10,
+  useFilters: false,
+  customFilters: myCustomFiltersFunction,
+  formatLinks: false,
+});
 ```
+
+#### `limit`
+
+The maximum number of links to return.
+
+#### `useFilters`
+
+Defaults to true and uses the following filterLinks function to filter out unwanted links.
+
+```js
+export function filterLinks(links: LinkObject[]): LinkObject[] {
+  // Filter out unwanted links
+  links = links.filter(link => {
+    return (
+      link.text.length > 30 &&
+      link.text.length < 250 &&
+      !link.text.includes('<img') &&
+      !link.text.includes('Paid Program') &&
+      !link.href.includes('#') &&
+      !link.href.includes('sponsored')
+    );
+  });
+
+  // Filter out duplicate links
+  links = links.filter((link, index, array) => {
+    return array.findIndex(l => l.href === link.href) === index;
+  });
+
+  return links;
+};
+```
+
+#### `customFilters`
+
+A user-defined function that takes an array of link objects and returns an array of link objects filtered as desired.
+
+#### `formatLinks`
+
+Defaults to true and uses the following formatLinks function to format links.
+
+```js
+function addBaseUrlIfNeeded(link: LinkObject, url: string): LinkObject {
+  if (link.href.includes('/') && !link.href.includes('http')) {
+    link.href = `${url}${link.href}`;
+  };
+
+  return link;
+};
+
+export function formatLinks(links: LinkObject[], url: string): LinkObject[] {
+  return links.map(link => {
+    addBaseUrlIfNeeded(link, url);
+
+    // Remove \n
+    link.text = link.text.replace(/\n/g, '');
+
+    // Remove '...'
+    link.text = link.text.replace(/\.\.\./g, '');
+
+    // Replace excess whitespace with single space
+    link.text = link.text.replace(/\s\s+/g, ' ');
+
+    return link;
+  });
+};
+```
+
+#### `customFormatting`
+
+A user-defined function that takes an array of link objects and an optional url argument and returns an array of link objects formatted as desired.
 
 ## Author
 
