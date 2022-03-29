@@ -1,6 +1,6 @@
 {
   "name": "get-array-of-links",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Get an array of link objects with the text and href from every anchor tag on a webpage.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
